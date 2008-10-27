@@ -14,8 +14,8 @@ class ObjectiveGenerator
     @model_name = args[:model]
     @url = args[:url]
     @protocol = args[:url].scan(/(xml)?$/).flatten.first || ""
-    @user = args[:user] || ""
-    @password = args[:password] || ""
+    @user = args[:user] 
+    @password = args[:password]
   end
   
   def generate()
@@ -31,7 +31,7 @@ class ObjectiveGenerator
   private
   
   def discover_resource
-    c = ActiveResourceConnection.new(:url=>@url)
+    c = ActiveResourceConnection.new(:url=>@url ,  :authentication=>[@user,@password])
     p = ActiveResourceParser.new(:xml=>c.fetch , :model=>@model_name)
     @model_attributes = convert_model(p.parse())   
   end

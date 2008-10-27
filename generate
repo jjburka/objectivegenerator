@@ -12,8 +12,8 @@ opts = Trollop::options do
       #{File.basename(__FILE__)} <options> <url> 
       where the options are
   EOS
-  opt :user       , "User Name"     , :short => "-u"
-  opt :password   , "User Password" , :short => "-p"
+  opt :user       , "User Name"     , :short => "-u" , :default=>""
+  opt :password   , "User Password" , :short => "-p" , :default=>""
 end
 
 url = ARGV.shift

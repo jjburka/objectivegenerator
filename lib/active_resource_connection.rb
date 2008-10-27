@@ -29,7 +29,7 @@ class ActiveResourceConnection
     @headers = args;
     @headers["Accept"] = "application/xml"
     @headers["Content-Type"] = "application/xml"
-    @headers[:http_basic_authentication] = args[:authentication] unless args[:authentication].nil?
+    @headers[:http_basic_authentication] = args.delete(:authentication)
   end
   
   # connects to the server and gets the data
