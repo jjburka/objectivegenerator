@@ -14,14 +14,15 @@ hpricot
 Usage
 -----------------------------------------------------
 
-$ generate.rb http://localhost/dogs.xml 
+$ generate.rb http://localhost/students.xml 
 
 will generate a header and implementation file in objective-c
 
 
-Limitations
-----------------------------------------------------
+Sample Rails App
+-----------------------------------------------------
 
-Currently all types will made into NSString.
+rake db:populate 
 
-
+requires Faker and Populator gems
+adds five records to the db 
