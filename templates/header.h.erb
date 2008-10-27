@@ -1,15 +1,11 @@
 #import "ActiveResourceSupport.h"
+<% require "lib/objective_syntax" %>
 
 @interface <%= @model_name.camelize %> : ActiveResource {
-<% @model_attributes.each do |name , type| %> 
-  <%= type %> * <%= name %>;
-<% end %>
+<%= ObjectiveSyntax.interface(@model_attributes) %>
 }
 
-<% @model_attributes.each do |name , type| %>
-@property (nonatomic , retain)<%= type %> * <%= name %>;
-<% end %>
-
+<%= ObjectiveSyntax.properties(@model_attributes) %>
 + (NSString *)getSite;
 
 @end

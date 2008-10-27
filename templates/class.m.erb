@@ -1,3 +1,4 @@
+<% require "lib/objective_syntax" %>
 #import "<%= @model_name.camelize %>.h"
 
 @implementation <%= @model_name.camelize %>
@@ -11,10 +12,7 @@
 	return self;
 }
 
-<% @model_attributes.each do |name , type| %>
-  @synthesize <%= name %>;
-<% end %>
-
+<%= ObjectiveSyntax.synthesize(@model_attributes) %>
 static NSString *site = @"<%= @url %>";
 
 #pragma mark ActiveResource+Base methods
@@ -49,9 +47,8 @@ static NSString *site = @"<%= @url %>";
 
 - (void)dealloc {
   
-<% @model_attributes.each do |name , type| %>      
-  [ <%= name %> release ];
-<% end %>
+<% @model_attributes.each { |name , type| %>  [ <%= name %> release ];
+<% } %>
   [super dealloc];
   
 }
