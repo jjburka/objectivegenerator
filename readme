@@ -1,0 +1,27 @@
+Objective Generator
+---------------------------------------------------
+
+Generates ObjectiveResource model files from a 
+preexisting Active Resource.
+
+Gem Requirements
+----------------------------------------------------
+
+Rails
+Trollop
+hpricot
+
+Usage
+-----------------------------------------------------
+
+$ generate.rb http://localhost/dogs.xml 
+
+will generate a header and implementation file in objective-c
+
+
+Limitations
+----------------------------------------------------
+
+Currently all types will made into NSString.
+
+

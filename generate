@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'trollop'
+require 'lib/objective_generator'
+
+opts = Trollop::options do
+  banner <<-EOS
+    ObjectiveResource Model Generator
+    
+    Usage:
+      #{File.basename(__FILE__)} <options> <url> 
+      where the options are
+  EOS
+  opt :user       , "User Name"     , :short => "-u"
+  opt :password   , "User Password" , :short => "-p"
+end
+
+url = ARGV.shift
+if url.nil?
+  puts "No Url given"
+else
+  opts.merge!(:url=>url , :model=>url.scan(/\/(\w+)+(.xml)?$/).flatten.first.singularize)
+  og = ObjectiveGenerator.new(opts)
+  og.generate()
+end
+
+

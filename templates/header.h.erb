@@ -1,0 +1,15 @@
+#import "ActiveResourceSupport.h"
+
+@interface <%= @model_name.camelize %> : ActiveResource {
+<% @model_attributes.each do |name , type| %> 
+  <%= type %> * <%= name %>;
+<% end %>
+}
+
+<% @model_attributes.each do |name , type| %>
+@property (nonatomic , retain)<%= type %> * <%= name %>;
+<% end %>
+
++ (NSString *)getSite;
+
+@end

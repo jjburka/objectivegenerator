@@ -1,0 +1,60 @@
+#import "<%= @model_name.camelize %>.h"
+
+@implementation <%= @model_name.camelize %>
+
+- (id) init
+{
+	self = [super init];
+	if (self != nil) {
+		
+  }
+	return self;
+}
+
+<% @model_attributes.each do |name , type| %>
+  @synthesize <%= name %>;
+<% end %>
+
+static NSString *site = @"<%= @url %>";
+
+#pragma mark ActiveResource+Base methods
++ (NSString *)getSite {
+	return site;
+}
+
++ (NSString *)collectionName {
+	return @"<%= @model_name.pluralize %>";
+}
+
+// Set the protocol extension here
+<%= "/*" if @protocol == "xml" %>
++ (NSString *)protocolExtension {
+	return @"<%= @protocol %>";
+}
+<%= "*/" if @protocol == "xml" %>
+// Set the user here
+<%= "/*" if @user.empty?  %>
++ (NSString *)getUser {
+	return @"<%= @user %>";
+}
+<%= "*/" if @user.empty? %>
+// Set the password here
+<%= "/*" if @password.empty? %>
++ (NSString *)getPassword {
+	return @"<%= @password %>";
+}
+<%= "*/" if @password.empty? %>
+
+#pragma mark cleanup
+
+- (void)dealloc {
+  
+<% @model_attributes.each do |name , type| %>      
+  [ <%= name %> release ];
+<% end %>
+  [super dealloc];
+  
+}
+
+
+@end
