@@ -14,7 +14,7 @@ hpricot
 Usage
 -----------------------------------------------------
 
-$ generate.rb http://localhost/students.xml 
+$ generate http://localhost/students.xml 
 
 will generate a header and implementation file in objective-c
 
